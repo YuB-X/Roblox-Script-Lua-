@@ -1,0 +1,308 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
+
+local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
+
+local GUI = Mercury:Create{
+    Name = "YUB-X",
+    Size = UDim2.fromOffset(550, 350),
+    Theme = Mercury.Themes.Dark,
+    Link = "https://YUB-X.com/Prodigy Drift [ALPHA]/Script"
+}
+
+local Tab = GUI:Tab{
+	Name = "Script",
+	Icon = "rbxassetid://8569322835"
+}
+
+Tab:Button{
+	Name = "Rejoin",
+	Description = nil,
+	Callback = function() 
+        local ts = game:GetService("TeleportService")
+        local p = game:GetService("Players").LocalPlayer
+        ts:Teleport(game.PlaceId, p)
+	    end
+    
+}
+
+
+
+
+Tab:Toggle{
+	Name = "Auto_Pilot",
+	StartingState = false,
+	Description = nil,
+	Callback = function(state) 
+if state == true then
+GUI:Notification{
+	Title = "YUB-X:",
+	Text = "Start Auto_Pilot",
+	Duration = 3,
+	Callback = function() end
+}
+end	   	    
+_G.startfram = state
+ 
+ if  _G.speed == 0 then
+     _G.speed = 250
+end
+spawn(function()
+LocalPlayer = game:GetService("Players").LocalPlayer
+Camera = workspace.CurrentCamera
+VirtualUser = game:GetService("VirtualUser")
+MarketplaceService = game:GetService("MarketplaceService")
+end)
+ 
+function GetCurrentVehicle()
+    return LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") and LocalPlayer.Character.Humanoid.SeatPart and LocalPlayer.Character.Humanoid.SeatPart.Parent
+end
+ 
+function TP(cframe)
+    GetCurrentVehicle():SetPrimaryPartCFrame(cframe)
+end
+ 
+--Velocity TP
+function VelocityTP(cframe)
+    TeleportSpeed = _G.speed
+    Car = GetCurrentVehicle()
+    local BodyGyro = Instance.new("BodyGyro", Car.PrimaryPart)
+    BodyGyro.P = 900000
+    BodyGyro.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+    BodyGyro.CFrame = Car.PrimaryPart.CFrame
+    local BodyVelocity = Instance.new("BodyVelocity", Car.PrimaryPart)
+    BodyVelocity.MaxForce = Vector3.new(9e9, 9e9, 9e9)
+    BodyVelocity.Velocity = CFrame.new(Car.PrimaryPart.Position, cframe.p).LookVector * TeleportSpeed
+    wait((Car.PrimaryPart.Position - cframe.p).Magnitude / TeleportSpeed)
+    BodyVelocity.Velocity = Vector3.new()
+    task.wait()
+    BodyVelocity:Destroy()
+    BodyGyro:Destroy()
+end
+ 
+--Auto Farm
+StartPosition1 = CFrame.new(Vector3.new(-868, 9, -27))
+ 
+EndPosition2 = CFrame.new(Vector3.new(-546, 9, -107))
+ 
+StartPosition3 = CFrame.new(Vector3.new(-360, 9, -95)) 
+ 
+StartPosition4 = CFrame.new(Vector3.new(-314, 9, -2)) 
+ 
+StartPosition5 = CFrame.new(Vector3.new(-353, 9, 121)) 
+ 
+StartPosition6 = CFrame.new(Vector3.new(-323, 9, 184)) 
+ 
+StartPosition7 = CFrame.new(Vector3.new(-257, 9, 193)) 
+ 
+StartPosition8 = CFrame.new(Vector3.new(-214, 9, 143)) 
+ 
+StartPosition9 = CFrame.new(Vector3.new(-206, 9, 61)) 
+ 
+StartPosition10 = CFrame.new(Vector3.new(-276, 9, -64)) 
+ 
+StartPosition11 = CFrame.new(Vector3.new(-215, 9, -239))
+ 
+StartPosition12 = CFrame.new(Vector3.new(-245, 9, -325)) 
+ 
+StartPosition13 = CFrame.new(Vector3.new(-329, 9, -335))
+ 
+StartPosition14 = CFrame.new(Vector3.new(-428, 9, -326)) 
+ 
+StartPosition15 = CFrame.new(Vector3.new(-581, 9, -445))
+ 
+StartPosition16 = CFrame.new(Vector3.new(-647, 9, -432)) 
+ 
+StartPosition17 = CFrame.new(Vector3.new(-662, 9, -281)) 
+
+StartPosition18 = CFrame.new(Vector3.new(-782, 9, -197))
+ 
+StartPosition19 = CFrame.new(Vector3.new(-911, 9, -137)) 
+ 
+StartPosition120 = CFrame.new(Vector3.new(-903, 9, -44)) 
+
+
+spawn(function()
+while wait() and _G.startfram == true do
+        pcall(function()
+            if not GetCurrentVehicle() and tick() - (LastNotif or 0) > 8 then
+                if state == true then
+                    spawn(function()
+               VelocityTP(StartPosition20 + (TouchTheRoad and Vector3.new() or Vector3.new(0, 5, 0)))
+                    end)
+                GUI:Notification{
+                	Title = "YUB-X: Auto_Pilot",
+                	Text = "Auto Join Car",
+                	Duration = 8,
+                	Callback = function() end
+                }
+                local args = {
+                [1] = "SpawnCar",
+                [2] = {
+                    ["Model"] = "Soupra MK4",
+                    ["Make"] = "Toyoto"
+                }
+            }
+            
+            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("MainRemote"):FireServer(unpack(args))
+                end	   
+                wait(5)
+              	TP(StartPosition1 + (TouchTheRoad and Vector3.new() or Vector3.new(0, 5, 0)))
+                LastNotif = tick()
+            else			    
+              wait(1)
+              VelocityTP(StartPosition1 + (TouchTheRoad and Vector3.new() or Vector3.new(0, 0, 0)))
+ 
+               VelocityTP(EndPosition2 + (TouchTheRoad and Vector3.new() or Vector3.new(0, -25, 0)))
+ 
+               VelocityTP(StartPosition3 + (TouchTheRoad and Vector3.new() or Vector3.new(0, -7, 0)))
+
+               VelocityTP(StartPosition4 + (TouchTheRoad and Vector3.new() or Vector3.new(0, -7, 0)))
+ 
+               VelocityTP(StartPosition5 + (TouchTheRoad and Vector3.new() or Vector3.new(0, -7, 0)))
+ 
+
+               VelocityTP(StartPosition6 + (TouchTheRoad and Vector3.new() or Vector3.new(0, -7, 0)))
+ 
+               VelocityTP(StartPosition7 + (TouchTheRoad and Vector3.new() or Vector3.new(0, -7, 0)))
+
+               VelocityTP(StartPosition8 + (TouchTheRoad and Vector3.new() or Vector3.new(0, -7, 0)))
+ 
+               VelocityTP(StartPosition9 + (TouchTheRoad and Vector3.new() or Vector3.new(0, -7, 0)))
+ 
+               VelocityTP(StartPosition10 + (TouchTheRoad and Vector3.new() or Vector3.new(0, -7, 0)))
+               
+               VelocityTP(StartPosition11 + (TouchTheRoad and Vector3.new() or Vector3.new(0, -7, 0)))
+
+               VelocityTP(StartPosition12 + (TouchTheRoad and Vector3.new() or Vector3.new(0,-7, 0)))
+ 
+                VelocityTP(StartPosition13 + (TouchTheRoad and Vector3.new() or Vector3.new(0,-7, 0)))
+
+                VelocityTP(StartPosition14 + (TouchTheRoad and Vector3.new() or Vector3.new(0,-7, 0)))
+             
+              VelocityTP(StartPosition15 + (TouchTheRoad and Vector3.new() or Vector3.new(0,-7, 0)))
+             
+               VelocityTP(StartPosition16 + (TouchTheRoad and Vector3.new() or Vector3.new(0,-7, 0)))
+              
+               VelocityTP(StartPosition17 + (TouchTheRoad and Vector3.new() or Vector3.new(0,-7, 0)))
+
+
+                VelocityTP(StartPosition18 + (TouchTheRoad and Vector3.new() or Vector3.new(0,-6, 0)))
+             
+               VelocityTP(StartPosition19 + (TouchTheRoad and Vector3.new() or Vector3.new(0,-7,0)))
+              
+               VelocityTP(StartPosition20 + (TouchTheRoad and Vector3.new() or Vector3.new(0,-5, 0)))
+            end
+        end)
+    end
+end)
+ 
+LocalPlayer.Idled:Connect(function()
+    VirtualUser:CaptureController()
+    VirtualUser:ClickButton2(Vector2.new(), Camera.CFrame)
+end)
+    end
+}
+
+
+Tab:Slider{
+	Name = "Auto_Pilot Speed",
+	Default = 0,
+	Min = 0,
+	Max = 300,
+	Callback = function(Value) 
+	    _G.speed = Value -- 450 = 469KM/H
+	end
+    
+}
+
+Tab:Toggle{
+	Name = "Boost speed Car",
+	StartingState = false,
+	Description = nil,
+Callback = function(state)
+
+    local UserInputService = game:GetService("UserInputService")
+	local GuiService = game:GetService("GuiService")
+	local LocalPlayer = game:GetService("Players").LocalPlayer
+	
+game:GetService("RunService").Stepped:Connect(function()
+		if GuiService.MenuIsOpen and state == true then
+			return
+		end
+		if workspace.CurrentCamera.CameraSubject:IsDescendantOf(LocalPlayer.Character) and state == true then
+			return
+		end
+		if UserInputService:IsKeyDown(Enum.KeyCode.W 
+			) and state == true then
+			workspace.CurrentCamera.CameraSubject:ApplyImpulse(
+				workspace.CurrentCamera.CameraSubject.CFrame.LookVector * Vector3.new(_G.SValue,_G.SValue,_G.SValue)
+			)
+		end
+	end)
+ 
+	--LeftShift Speed
+	game:GetService("RunService").Stepped:Connect(function()
+		if GuiService.MenuIsOpen and state == true then
+			return
+		end
+		if workspace.CurrentCamera.CameraSubject:IsDescendantOf(LocalPlayer.Character) and state == true then
+			return
+		end
+		if UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) and state == true then
+
+ 
+			workspace.CurrentCamera.CameraSubject:ApplyImpulse(
+				workspace.CurrentCamera.CameraSubject.CFrame.LookVector * Vector3.new(_G.SValue,_G.SValue,_G.SValue)
+			)
+ 
+		    end
+	    end)    
+ 
+	game:GetService("RunService").Stepped:Connect(function()
+		if GuiService.MenuIsOpen and state == true then
+			return
+		end
+		if workspace.CurrentCamera.CameraSubject:IsDescendantOf(LocalPlayer.Character) and state == true then
+			return
+		end
+		if UserInputService:IsKeyDown(Enum.KeyCode.S) and state == true then
+
+ 
+			workspace.CurrentCamera.CameraSubject:ApplyImpulse(
+				workspace.CurrentCamera.CameraSubject.CFrame.LookVector * Vector3.new(-_G.SValue,-_G.SValue,-_G.SValue)
+			)
+			end
+	    end)
+	end
+}
+
+GUI:Notification{
+	Title = "YUB-X:",
+	Text = "Ready",
+	Duration = 5,
+	Callback = function() end
+}
+
+Tab:Slider{
+	Name = "Car Speed",
+	Default = 50,
+	Min = 0,
+	Max = 500,
+	Callback = function(Value) 
+	    _G.SValue = Value -- 450 = 469KM/H
+	end
+    
+}
+
+
+
+
+
+
+
+GUI:Credit{
+	Name = "Creditor's YuB - X#6832",
+	Description = "Made By YUB-X",
+	V3rm = "link/name",
+	Discord = "YuB - X#6832"
+}
