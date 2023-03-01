@@ -1,0 +1,234 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
+
+local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
+
+local GUI = Mercury:Create{
+    Name = "YUB-X",
+    Size = UDim2.fromOffset(550, 350),
+    Theme = Mercury.Themes.Dark,
+    Link = "https://YUB-X.com/Midnight Racing: Tokyo/Script/Tokyo City"
+}
+
+local Tab = GUI:Tab{
+	Name = "Script",
+	Icon = "rbxassetid://8569322835"
+}
+
+Tab:Button{
+	Name = "Rejoin",
+	Description = nil,
+	Callback = function() 
+        local ts = game:GetService("TeleportService")
+        local p = game:GetService("Players").LocalPlayer
+        ts:Teleport(game.PlaceId, p)
+	    end
+    
+}
+
+
+
+
+Tab:Toggle{
+	Name = "Auto From",
+	StartingState = false,
+	Description = nil,
+	Callback = function(state) 
+	    
+if state == true then
+GUI:Notification{
+	Title = "YUB-X:",
+	Text = "Start Auto From",
+	Duration = 3,
+	Callback = function() end
+}
+end	    
+getgenv().lol = state
+ 
+ 
+local UserInputService = game:GetService("UserInputService")
+local GuiService = game:GetService("GuiService")
+local LocalPlayer = game:GetService("Players").LocalPlayer
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+ 
+local LocalPlayer = Players.LocalPlayer
+local Character = LocalPlayer.Character
+local Humanoid = Character:FindFirstChildWhichIsA("Humanoid")
+ 
+local SeatPart = Humanoid.SeatPart
+local Vehicle = SeatPart.Parent
+local Wheels = Vehicle:FindFirstChild("Wheels")
+local Body = Vehicle:FindFirstChild("Body")
+spawn(function()
+        wait(4.5)
+    while getgenv().lol == true do
+        wait()
+	workspace.CurrentCamera.CameraSubject:ApplyImpulse(
+	workspace.CurrentCamera.CameraSubject.CFrame.LookVector * Vector3.new(_G.speedd,_G.speedd,_G.speedd)
+	)
+    end
+end)
+spawn(function()
+            wait(9.5)
+while wait(0) and getgenv().lol == true do
+        _getgenv().lol = true
+        wait(3)
+          getgenv().lol = false 
+        end
+end)
+if SeatPart:FindFirstAncestor("Body") then 
+Vehicle = SeatPart:FindFirstAncestor("Body").Parent
+Wheels = (Wheels ~= nil and Wheels) or Vehicle:FindFirstChild("Wheels")
+end
+ 
+if game.PlaceId == 3351674303 then
+Wheels = Vehicle:FindFirstChild("Core")
+end
+ 
+Vehicle.PrimaryPart = SeatPart
+ 
+local function GetWheelVelocity()
+if game.PlaceId == 3351674303 then
+return Wheels:GetChildren()[1]["Wheel"].Velocity, Wheels:GetChildren()[1]["Wheel"].RotVelocity
+end
+for index, value in pairs(Wheels:GetDescendants()) do
+if value:IsA("BasePart") then
+return value.Velocity, value.RotVelocity
+end
+end
+end
+ 
+local function SetWheelVelocity(Velocity, RotVelocity)
+for index, value in pairs(Wheels:GetDescendants()) do
+pcall(function()
+value.Velocity = Velocity
+if RotVelocity ~= nil then
+value.RotVelocity = RotVelocity
+end
+end)
+end
+end
+ 
+Character.Parent = Vehicle
+Vehicle:MoveTo(Vector3.new(2616, 5, -2))
+Character.Parent = workspace
+ 
+if not Vehicle or not Vehicle.Parent or not Humanoid.SeatPart then
+end
+while wait(1) and getgenv().lol == true do
+local Speed = ((2/12) * (60/88)) * SeatPart.Velocity.Magnitude
+if SeatPart.Position.X > -14294.7607 then
+Character.Parent = Vehicle
+Vehicle:MoveTo(Vector3.new(2616, 5, -2))
+Character.Parent = workspace
+end
+end
+ 
+	    end
+}
+
+
+Tab:Slider{
+	Name = "Auto_Farm Speed",
+	Default = 0,
+	Min = 0,
+	Max = 300,
+	Callback = function(Value) 
+	    _G.speedd = Value -- 450 = 469KM/H
+	end
+    
+}
+
+Tab:Toggle{
+	Name = "Boost speed Car",
+	StartingState = false,
+	Description = nil,
+Callback = function(state)
+
+    local UserInputService = game:GetService("UserInputService")
+	local GuiService = game:GetService("GuiService")
+	local LocalPlayer = game:GetService("Players").LocalPlayer
+	
+game:GetService("RunService").Stepped:Connect(function()
+		if GuiService.MenuIsOpen and state == true then
+			return
+		end
+		if workspace.CurrentCamera.CameraSubject:IsDescendantOf(LocalPlayer.Character) and state == true then
+			return
+		end
+		if UserInputService:IsKeyDown(Enum.KeyCode.W 
+			) and state == true then
+			workspace.CurrentCamera.CameraSubject:ApplyImpulse(
+				workspace.CurrentCamera.CameraSubject.CFrame.LookVector * Vector3.new(_G.SValue,_G.SValue,_G.SValue)
+			)
+		end
+	end)
+ 
+	--LeftShift Speed
+	game:GetService("RunService").Stepped:Connect(function()
+		if GuiService.MenuIsOpen and state == true then
+			return
+		end
+		if workspace.CurrentCamera.CameraSubject:IsDescendantOf(LocalPlayer.Character) and state == true then
+			return
+		end
+		if UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) and state == true then
+
+ 
+			workspace.CurrentCamera.CameraSubject:ApplyImpulse(
+				workspace.CurrentCamera.CameraSubject.CFrame.LookVector * Vector3.new(_G.SValue,_G.SValue,_G.SValue)
+			)
+ 
+		    end
+	    end)    
+ 
+	game:GetService("RunService").Stepped:Connect(function()
+		if GuiService.MenuIsOpen and state == true then
+			return
+		end
+		if workspace.CurrentCamera.CameraSubject:IsDescendantOf(LocalPlayer.Character) and state == true then
+			return
+		end
+		if UserInputService:IsKeyDown(Enum.KeyCode.S) and state == true then
+
+ 
+			workspace.CurrentCamera.CameraSubject:ApplyImpulse(
+				workspace.CurrentCamera.CameraSubject.CFrame.LookVector * Vector3.new(-_G.SValue,-_G.SValue,-_G.SValue)
+			)
+			end
+	    end)
+	end
+}
+
+GUI:Notification{
+	Title = "YUB-X:",
+	Text = "Ready",
+	Duration = 5,
+	Callback = function() end
+}
+
+Tab:Slider{
+	Name = "Car Speed",
+	Default = 50,
+	Min = 0,
+	Max = 500,
+	Callback = function(Value) 
+	    _G.SValue = Value -- 450 = 469KM/H
+	end
+    
+}
+
+
+
+
+
+
+
+GUI:Credit{
+	Name = "Creditor's YuB - X#6832",
+	Description = "Made By YUB-X",
+	V3rm = "link/name",
+	Discord = "YuB - X#6832"
+}
