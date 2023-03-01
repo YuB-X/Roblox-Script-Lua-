@@ -1,0 +1,71 @@
+	local UserInputService = game:GetService("UserInputService")
+	local GuiService = game:GetService("GuiService")
+	local LocalPlayer = game:GetService("Players").LocalPlayer
+ 
+	game:GetService("RunService").Stepped:Connect(function()
+		if GuiService.MenuIsOpen then
+			return
+		end
+		if workspace.CurrentCamera.CameraSubject:IsDescendantOf(LocalPlayer.Character) then
+			return
+		end
+		if UserInputService:IsKeyDown(Enum.KeyCode.LeftControl
+			) then
+			workspace.CurrentCamera.CameraSubject:ApplyImpulse(
+				workspace.CurrentCamera.CameraSubject.CFrame.LookVector * Vector3.new(-2e2,-2e2,-2e2)
+			)
+		end
+	end)local UserInputService = game:GetService("UserInputService")
+	local GuiService = game:GetService("GuiService")
+	local LocalPlayer = game:GetService("Players").LocalPlayer
+ 
+	game:GetService("RunService").Stepped:Connect(function()
+		if GuiService.MenuIsOpen then
+			return
+		end
+		if workspace.CurrentCamera.CameraSubject:IsDescendantOf(LocalPlayer.Character) then
+			return
+		end
+		if UserInputService:IsKeyDown(Enum.KeyCode.W
+			) then
+			workspace.CurrentCamera.CameraSubject:ApplyImpulse(
+				workspace.CurrentCamera.CameraSubject.CFrame.LookVector * Vector3.new(4e1,4e1,4e1)
+			)
+		end
+	end)local UserInputService = game:GetService("UserInputService")
+	local GuiService = game:GetService("GuiService")
+	local LocalPlayer = game:GetService("Players").LocalPlayer
+ 
+	game:GetService("RunService").Stepped:Connect(function()
+		if GuiService.MenuIsOpen then
+			return
+		end
+		if workspace.CurrentCamera.CameraSubject:IsDescendantOf(LocalPlayer.Character) then
+			return
+		end
+		if UserInputService:IsKeyDown(Enum.KeyCode.LeftShift
+			) then
+			workspace.CurrentCamera.CameraSubject:ApplyImpulse(
+				workspace.CurrentCamera.CameraSubject.CFrame.LookVector * Vector3.new(4e2,4e2,4e2)
+			)
+ 
+		end
+	end)
+	mouse.KeyDown:connect(function(key)
+		if key:lower() == "z" then
+			if flying then flying = false
+			else
+				flying = true
+				Fly()
+			end
+		elseif key:lower() == "," then
+			ctrl.f = game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.localPlayer)
+		elseif key:lower() == "," then
+			ctrl.b = game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.localPlayer)
+		elseif key:lower() == "," then
+			ctrl.l = game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.localPlayer)
+		elseif key:lower() == "," then
+			ctrl.r = game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.localPlayer)
+		end
+	end)
+	Fly()
